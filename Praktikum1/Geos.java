@@ -4,4 +4,5 @@ abstract class Geos {
 	Point p1; 
 	
 	abstract double flaeche(); 
+	public abstract String toString(); 
 }

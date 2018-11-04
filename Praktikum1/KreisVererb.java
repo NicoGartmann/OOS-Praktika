@@ -52,10 +52,5 @@ public class KreisVererb extends Point {
 	double umfang() {
 		return 2*Math.PI*this.radius; 
 	}
-	
-	
-	public static void main(String[] args) {
-	 
-	}
 
 }

@@ -52,16 +52,5 @@ public class Rechteck extends Geos {
 					 this.p4 + " Oben rechts: " + this.p3; 
 		return res; 
 	}
-	
-	public static void main(String[] args) {
-		Rechteck r1 = new Rechteck(); 
-		Point p1 = new Point(3,4); 
-		Point p2 = new Point(8,4);
-		Point p3= new Point(8,7); 
-		Point p4 = new Point(3,7);
-		Rechteck r2 = new Rechteck(p1, p2, p3, p4); 
-		System.out.println(r2);
-		r1 = r2.clone(); 
-		System.out.println(r1); 
-	}
+
 }

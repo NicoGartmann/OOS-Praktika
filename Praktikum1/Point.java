@@ -58,8 +58,5 @@ public class Point {
 		return res; 
 	}
 
-	public static void main(String[] args) {
-	
-	}
 }
 
