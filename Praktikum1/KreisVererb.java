@@ -9,21 +9,18 @@ public class KreisVererb extends Point {
 	
 	//Konstruktor mittels Point u Radius
 	KreisVererb(Point p, double radius) {
-		this.x=p.x;
-		this.y=p.y; 
+		super(p); 
 		this.radius=radius; 
 	}
 	
 	//Konstruktor mittels Point 
 	KreisVererb(Point p){
-		this.x=p.x; 
-		this.y=p.y; 
+		super(p); 
 		this.radius=1.0; 
 	}
 	
 	KreisVererb(int x, int y, double radius) {
-		this.x=x; 
-		this.y=y; 
+		super(x,y);  
 		this.radius=radius; 
 	}
 	

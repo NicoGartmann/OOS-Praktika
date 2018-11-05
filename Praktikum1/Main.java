@@ -113,7 +113,7 @@ public class Main {
 		geos[2] = new KreisAgg(p2, 7.0); 
 		geos[3] = new Rechteck(p5, p6, p7, p8); 
 		
-		double gesFlaeche=0.0; 
+		double gesFlaeche = 0.0; 
 		for(int i=0; i<4; i++) {
 			gesFlaeche += geos[i].flaeche(); 
 		}

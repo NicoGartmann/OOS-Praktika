@@ -38,8 +38,8 @@ public class Rechteck extends Geos {
 		return res; 
 	}
 	
-	boolean equals(Rechteck r) {
-		return ((this.p1==r.p1)&&(this.p2==r.p2)&&(this.p3==r.p3)&&(this.p4==r.p4)) ;  
+	boolean equals(Rechteck r) { 
+		return (this.p1.equals(r.p1) && this.p2.equals(r.p2)&& this.p3.equals(r.p3)&& this.p4.equals(r.p4)); 
 	}
 	
 	public Rechteck clone() {
