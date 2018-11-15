@@ -1,9 +1,24 @@
 import java.util.ArrayList;
 
 public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
-	
+	/**
+	 * <h1> Admin </h1>
+	 * <p> Admin kann Benutzer in die Datenhaltung data hinzufuegen oder loeschen, 
+	 * genauso wie zu pruefen, ob ein Benutzer in der Datenhaltung vorhanden ist </p>
+	 * @author Nico Gartmann
+	 * @version 1.0
+	 * @since 2018-11-15
+	 */
 	private ArrayList <Benutzer> data = new ArrayList<Benutzer>(); 
 	
+	/**
+	 * Fuegt einen neuen Benutzer hinzu, wenn dieser nicht schon in der Datenhaltung eingetragen 
+	 * ist
+	 * @param benutzer
+	 * @throws BenutzerExistsException
+	 * 
+	 */
+	@Override 
 	public void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException {
 		for(int i=0; i<this.data.size(); i++) {
 			if(this.data.get(i).equals(benutzer)) {
@@ -13,6 +28,12 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		this.data.add(benutzer);
 	}
 	
+	/**
+	 * Prueft, ob ein Benutzer in der Datenhaltung eingetragen ist
+	 * @param benutzer
+	 * @return boolean 
+	 */
+	@Override 
 	public boolean benutzerOK(Benutzer benutzer) {
 		for(int i=0; i<data.size() ; i++) {
 			if(this.data.get(i).equals(benutzer)) {
@@ -22,6 +43,11 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		return false; 
 	}
 	
+	/**
+	 * Loescht einen Benutzer, wenn dieser in der Datenhaltung existiert
+	 * @param benutzer
+	 * @throws BenutzerExistsException
+	 */
 	void benutzerLoeschen(Benutzer benutzer) throws BenutzerExistsException {
 		if(this.data.isEmpty()) {
 			throw new BenutzerExistsException("Benutzer existiert nicht!");
@@ -37,6 +63,10 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		}	
 	}
 	
+	/**
+	 * Gibt Benuzer aus der Datenhaltung aus
+	 * @return String
+	 */
 	public String toString() {
 		String res = "";
 		for(int i=0; i < this.data.size(); i++) {
@@ -44,6 +74,11 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		}
 		return res;
 	}
+	
+	/**
+	 * Main Methode zum Testen
+	 * @param args
+	 */
 	
 	public static void main(String[] args) {
 		BenutzerverwaltungAdmin admin = new BenutzerverwaltungAdmin(); 
