@@ -14,10 +14,10 @@ public class Benutzer {
 	
 	public boolean equals(Object obj) {
 		Benutzer b = (Benutzer) obj; 
-		return (this.userID.equals(b.userID)&&this.passWort.equals(b.passWort)); 
+		return (this.userID.equals(b.userID) && this.passWort.equals(b.passWort)); 
 	}
 	
 	public String toString () {
-		return ("Benutzer: " + this.userID.toString() + " Passwort: " + this.passWort.toString()); 
+		return ("Benutzer: " + this.userID.toString() + ", Passwort: " + String.copyValueOf(this.passWort)); 
 	}
 }
