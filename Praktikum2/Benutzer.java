@@ -1,5 +1,6 @@
 
 public class Benutzer {
+	
 	/**
 	 * <h1> Benutzer </h1>
 	 * <p> Benutzer dient zum Erstellen eines Benutzers, der einen Namen und ein Passwort
@@ -15,8 +16,9 @@ public class Benutzer {
 	Benutzer() {
 		
 	}
+	
 	/**
-	 * Erstellt Benutzer
+	 * <p>Erstellt Benutzer</p>
 	 * @param userID
 	 * @param passWort
 	 */
@@ -24,16 +26,23 @@ public class Benutzer {
 		this.userID= userID; 
 		this.passWort= passWort; 
 	}
-	/**Prüft ob 2 Nutzer gleich sind 
+	
+	/**
+	 * <p>Prüft ob 2 Nutzer gleich sind</p>
 	 * @param obj 
 	 * @return boolean true bei gleichem Nutzer 
 	 */
 	public boolean equals(Object obj) {
-		Benutzer b = (Benutzer) obj; 
-		return (this.userID.equals(b.userID) && this.passWort.equals(b.passWort)); 
+		if((obj instanceof Benutzer) && (obj!=null)) {
+			Benutzer b = (Benutzer) obj;
+			return (this.userID.equals(b.userID) && this.passWort.equals(b.passWort)); 
+		}
+		else return false; 
+		
 	}
 	
-	/**Einen Nutzer ausgeben 
+	/**
+	 * <p>Einen Nutzer ausgeben</p>
 	 * @return String 
 	 */
 	public String toString () {

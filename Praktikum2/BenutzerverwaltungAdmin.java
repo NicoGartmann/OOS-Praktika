@@ -1,27 +1,28 @@
 import java.util.ArrayList;
 
 public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
+	
 	/**
 	 * <h1> Admin </h1>
-	 * <p> Admin kann Benutzer in die Datenhaltung data hinzufuegen oder loeschen, 
-	 * genauso wie zu pruefen, ob ein Benutzer in der Datenhaltung vorhanden ist </p>
+	 * <p>Admin kann Benutzer in die Datenhaltung data hinzufuegen oder loeschen, 
+	 * genauso wie zu pruefen, ob ein Benutzer in der Datenhaltung vorhanden ist</p>
 	 * @author Nico Gartmann
 	 * @version 1.0
 	 * @since 2018-11-15
 	 */
+	
 	private ArrayList <Benutzer> data = new ArrayList<Benutzer>(); 
 	
 	/**
-	 * Fuegt einen neuen Benutzer hinzu, wenn dieser nicht schon in der Datenhaltung eingetragen 
-	 * ist
+	 * <p>Fuegt einen neuen Benutzer hinzu, wenn dieser nicht schon in der Datenhaltung eingetragen 
+	 * ist</p>
 	 * @param benutzer
 	 * @throws BenutzerExistsException
-	 * 
 	 */
 	@Override 
 	public void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException {
 		for(int i=0; i<this.data.size(); i++) {
-			if(this.data.get(i).equals(benutzer)) {
+			if(this.data.get(i).userID.equals(benutzer.userID)) {
 				throw new BenutzerExistsException("Benutzer bereits vorhanden!");
 			}
 		}
@@ -29,7 +30,7 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	/**
-	 * Prueft, ob ein Benutzer in der Datenhaltung eingetragen ist
+	 * <p>Prueft, ob ein Benutzer in der Datenhaltung eingetragen ist</p>
 	 * @param benutzer
 	 * @return boolean 
 	 */
@@ -44,7 +45,7 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	/**
-	 * Loescht einen Benutzer, wenn dieser in der Datenhaltung existiert
+	 * <p>Loescht einen Benutzer, wenn dieser in der Datenhaltung existiert</p>
 	 * @param benutzer
 	 * @throws BenutzerExistsException
 	 */
@@ -64,7 +65,7 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	/**
-	 * Gibt Benuzer aus der Datenhaltung aus
+	 * <p>Gibt Benuzer aus der Datenhaltung aus</p>
 	 * @return String
 	 */
 	public String toString() {
@@ -76,7 +77,7 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	/**
-	 * Main Methode zum Testen
+	 * <p>Main Methode zum Testen</p>
 	 * @param args
 	 */
 	
@@ -94,6 +95,7 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		Benutzer b2 = new Benutzer("George",p2); 
 		Benutzer b3 = new Benutzer("Ashkan",p3); 
 		Benutzer b4 = new Benutzer("Pascal", p4); 
+		Benutzer b5 = new Benutzer("Nico", p2); 
 	
 		
 		try {
@@ -117,9 +119,8 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		
 		//loest Exception aus 
 		try {
-			admin.benutzerEintragen(b1);
+			admin.benutzerEintragen(b5);
 		} catch (BenutzerExistsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
@@ -128,15 +129,16 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 		try {
 			admin.benutzerLoeschen(b1);
 		} catch (BenutzerExistsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 		System.out.println(admin);
 		
+		
+		//loest exception aus 
 		try {
 			admin.benutzerLoeschen(b4);
 		} catch (BenutzerExistsException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
