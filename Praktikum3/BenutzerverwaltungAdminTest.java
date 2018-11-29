@@ -30,7 +30,9 @@ public class BenutzerverwaltungAdminTest extends TestCase {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		assertNotNull(admin);
+		ArrayList <Benutzer> data = new ArrayList<Benutzer>(); 
+		data.add(ben1);
+		assertTrue(data.equals(admin));
 	}
 	
 	public void testBenuterLoeschen() {

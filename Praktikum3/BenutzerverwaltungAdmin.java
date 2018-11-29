@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.io.*;
 
 public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	
@@ -77,10 +78,24 @@ public class BenutzerverwaltungAdmin implements BenutzerVerwaltung {
 	}
 	
 	/**
+	 * <p>Legt neues leeres Objekt der Datenstruktur an und serialisiert diese 
+	 */
+	void dbInitialisieren() {
+		BenutzerverwaltungAdmin admin = new BenutzerverwaltungAdmin(); 
+		try {
+			FileOutputStream fs = new FileOutputStream("oos.s"); 
+			ObjectOutputStream os = new ObjectOutputStream(fs); 
+			os.writeObject(admin);
+			os.close();
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
 	 * <p>Main Methode zum Testen</p>
 	 * @param args
 	 */
-	
 	public static void main(String[] args) {
 		BenutzerverwaltungAdmin admin = new BenutzerverwaltungAdmin(); 
 		
