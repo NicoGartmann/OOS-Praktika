@@ -1,3 +1,5 @@
+import java.util.*;
+
 /**
  * <p>Überschrift: BenutzerVerwaltungAdmin</p>
  * <p>Beschreibung: BenutzerVerwaltung Admin implementiert BenutzerVerwaltung
@@ -7,7 +9,7 @@
  * @version 1.0
  */
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
-	
+	ArrayList<Benutzer> data = new ArrayList<Benutzer>();
 	/**
 	 * <p>benutzerEintragen trägt einen neuen Benutzer in die Datenhaltung ein
 	 * @param Benutzer
@@ -17,7 +19,12 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	@Override
 	public void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException {
 		// TODO Auto-generated method stub
-
+		if(this.benutzerOK(benutzer)){
+			this.data.add(benutzer); 
+		}
+		else {
+			throw new BenutzerExistsException("Benutzer existiert bereits."); 
+		}
 	}
 
 	/**
@@ -28,8 +35,24 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	 */
 	@Override
 	public boolean benutzerOK(Benutzer benutzer) {
-		// TODO Auto-generated method stub
-		return false;
+		for(Benutzer element: data) {
+			if(element.equals(benutzer)) {
+				return false; 
+			}
+		}		
+		return true; 
+	}
+	
+	void benutzerLoeschen(Benutzer benutzer) throws BenutzerNotAvailableException {
+		if(!this.benutzerOK(benutzer)) {
+			for(int i=0; i<this.data.size(); i++) {
+				if(benutzer.equals(data.get(i))) {
+					this.data.remove(benutzer);
+				}
+			}
+		} else {
+			throw new BenutzerNotAvailableException("Benutzer ist nicht in der Datenhaltung vorhanden."); 
+		}
 	}
 	
 	/**
@@ -37,7 +60,12 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	 * @return String
 	 */
 	public String toString() {
-		return ""; 
+		String out="< | ";
+		for(Benutzer element: data) {
+			out += element.toString() + " | "; 
+		}
+		out += ">"; 
+		return out; 
 	}
 	/**
 	 * <p> Main Methode zum Testen von BenutzerVerwaltungAdmin
@@ -61,23 +89,42 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		System.out.println("Benutzer in Datenhaltung eintragen: ");
 		System.out.println("Vorher: "); 
 		System.out.println(admin);
-		admin.benutzerEintragen(ben1);
-		admin.benutzerEintragen(ben2);
-		admin.benutzerEintragen(ben4);
-		admin.benutzerEintragen(ben5);
+		try {
+			admin.benutzerEintragen(ben1);
+			admin.benutzerEintragen(ben2);
+			admin.benutzerEintragen(ben4);
+			admin.benutzerEintragen(ben5);
+		} catch (BenutzerExistsException e) {
+			e.printStackTrace();
+		}
 		System.out.println("Nachher: ");
 		System.out.println(admin); 
 		
 		System.out.println("Bereits existierenden Nutzer eintragen: "); 
-		admin.benutzerEintragen(ben3);
+		try {
+			admin.benutzerEintragen(ben3);
+		} catch (BenutzerExistsException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		System.out.println(admin); 
 		
 		System.out.println("Benutzer löschen: "); 
-		admin.benutzerLoeschen(ben3); 
+		try {
+			admin.benutzerLoeschen(ben2);
+		} catch (BenutzerNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		System.out.println(admin); 
 		
 		System.out.println("Nicht existierenden Benutzer löschen: "); 
-		admin.benutzerLoeschen(ben3); 
+		try {
+			admin.benutzerLoeschen(ben3);
+		} catch (BenutzerNotAvailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		System.out.println(admin); 
 		
 	}
