@@ -39,11 +39,12 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 			if(element.equals(benutzer)) {
 				return false; 
 			}
-		}		
+		}
 		return true; 
 	}
 	
-	void benutzerLoeschen(Benutzer benutzer) throws BenutzerNotAvailableException {
+	
+	void benutzerLoeschen(Benutzer benutzer) throws BenutzerNotExistsException {
 		if(!this.benutzerOK(benutzer)) {
 			for(int i=0; i<this.data.size(); i++) {
 				if(benutzer.equals(data.get(i))) {
@@ -51,7 +52,7 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 				}
 			}
 		} else {
-			throw new BenutzerNotAvailableException("Benutzer ist nicht in der Datenhaltung vorhanden."); 
+			throw new BenutzerNotExistsException("Benutzer ist nicht in der Datenhaltung vorhanden."); 
 		}
 	}
 	
@@ -60,18 +61,18 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	 * @return String
 	 */
 	public String toString() {
-		String out="< | ";
+		String out="< ";
 		for(Benutzer element: data) {
-			out += element.toString() + " | "; 
+			out += element.toString()+" "; 
 		}
 		out += ">"; 
 		return out; 
 	}
 	/**
 	 * <p> Main Methode zum Testen von BenutzerVerwaltungAdmin
-	 * @param args
+	 * @param args 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args)  {
 		// TODO Auto-generated method stub
 		BenutzerVerwaltungAdmin admin = new BenutzerVerwaltungAdmin(); 
 		
@@ -79,16 +80,25 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		char[] p2 = {'a','s','d','f'}; 
 		char[] p3 = {'v','x','c','n'}; 
 		char[] p4 = {'x','v','w','y'}; 
+		char[] p5 = {'s','a','v','e'}; 
 		
 		Benutzer ben1 = new Benutzer("Georgios",p1); 
 		Benutzer ben2 = new Benutzer("Nico",p2);
 		Benutzer ben3 = new Benutzer("Nico",p2);
 		Benutzer ben4 = new Benutzer("Ralf",p3);
 		Benutzer ben5 = new Benutzer("Olaf", p4); 
+		Benutzer ben6 = new Benutzer("Kevin",p5); 
 		
-		System.out.println("Benutzer in Datenhaltung eintragen: ");
-		System.out.println("Vorher: "); 
-		System.out.println(admin);
+		System.out.println("In leerer Datenhaltung Benutzer loeschen: (Exception soll geworfen werden)");
+		try {
+			admin.benutzerLoeschen(ben1);
+		} catch (BenutzerNotExistsException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		System.out.println("Benutzer in Datenhaltung eintragen:(soll ohne Probleme funktionieren)");
+		System.out.println("Vorher: " + admin); 
 		try {
 			admin.benutzerEintragen(ben1);
 			admin.benutzerEintragen(ben2);
@@ -97,10 +107,15 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		} catch (BenutzerExistsException e) {
 			e.printStackTrace();
 		}
-		System.out.println("Nachher: ");
-		System.out.println(admin); 
+		System.out.println("Nachher: " + admin);
 		
-		System.out.println("Bereits existierenden Nutzer eintragen: "); 
+		System.out.println("Benutzer testen: (soll true liefern)"); 
+		System.out.println(admin.benutzerOK(ben6));
+		
+		System.out.println("Benutzer testen: (soll false liefer)"); 
+		System.out.println(admin.benutzerOK(ben5)); 
+		
+		System.out.println("Bereits existierenden Nutzer eintragen:(soll Exception werfen) "); 
 		try {
 			admin.benutzerEintragen(ben3);
 		} catch (BenutzerExistsException e) {
@@ -109,19 +124,20 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		}
 		System.out.println(admin); 
 		
-		System.out.println("Benutzer löschen: "); 
+		System.out.println("Benutzer löschen:(soll funktionieren) "); 
+		System.out.println("Vorher: " + admin); 
 		try {
 			admin.benutzerLoeschen(ben2);
-		} catch (BenutzerNotAvailableException e) {
+		} catch (BenutzerNotExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		System.out.println(admin); 
+		System.out.println("Nachher: " + admin); 
 		
-		System.out.println("Nicht existierenden Benutzer löschen: "); 
+		System.out.println("Nicht existierenden Benutzer löschen: (soll Exception werfen)"); 
 		try {
 			admin.benutzerLoeschen(ben3);
-		} catch (BenutzerNotAvailableException e) {
+		} catch (BenutzerNotExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
