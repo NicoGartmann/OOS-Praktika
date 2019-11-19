@@ -11,14 +11,18 @@ import java.util.*;
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 	ArrayList<Benutzer> data = new ArrayList<Benutzer>();
 	/**
-	 * <p>benutzerEintragen trägt einen neuen Benutzer in die Datenhaltung ein
+	 * <p>benutzerEintragen trägt einen neuen Benutzer in die Datenhaltung ein</p>
 	 * @param Benutzer
 	 * @return void
 	 * @throws BenutzerExistsException
 	 */
 	@Override
-	public void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException {
+	public void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException, BenutzerInvalidException {
 		// TODO Auto-generated method stub
+		if(benutzer.userID == "" || String.copyValueOf(benutzer.passWort) == "") {
+			throw new BenutzerInvalidException("Benutzereingaben ungueltig");
+		}
+		
 		if(this.benutzerOK(benutzer)){
 			this.data.add(benutzer); 
 		}
@@ -88,8 +92,10 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		Benutzer ben4 = new Benutzer("Ralf",p3);
 		Benutzer ben5 = new Benutzer("Olaf", p4); 
 		Benutzer ben6 = new Benutzer("Kevin",p5); 
+		Benutzer ben7 = new Benutzer("", p5); 
 		
-		System.out.println("In leerer Datenhaltung Benutzer loeschen: (Exception soll geworfen werden)");
+		
+		System.out.println("In leerer Datenhaltung Benutzer Georgios loeschen: (Exception soll geworfen werden)");
 		try {
 			admin.benutzerLoeschen(ben1);
 		} catch (BenutzerNotExistsException e1) {
@@ -106,25 +112,38 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 			admin.benutzerEintragen(ben5);
 		} catch (BenutzerExistsException e) {
 			e.printStackTrace();
+		} catch(BenutzerInvalidException e) {
+			e.printStackTrace();
 		}
 		System.out.println("Nachher: " + admin);
 		
-		System.out.println("Benutzer testen: (soll true liefern)"); 
+		System.out.println("Ungueltiger benutzer ben7 eintragen: (soll exception werfen)"); 
+		try {
+			admin.benutzerEintragen(ben7);
+		} catch (BenutzerExistsException e) {
+			e.printStackTrace();
+		} catch(BenutzerInvalidException e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("Benutzer Kevin testen: (soll true liefern)"); 
 		System.out.println(admin.benutzerOK(ben6));
 		
-		System.out.println("Benutzer testen: (soll false liefer)"); 
+		System.out.println("Benutzer Olaf testen: (soll false liefern)"); 
 		System.out.println(admin.benutzerOK(ben5)); 
 		
-		System.out.println("Bereits existierenden Nutzer eintragen:(soll Exception werfen) "); 
+		System.out.println("Bereits existierenden Nutzer Nico eintragen:(soll Exception werfen) "); 
 		try {
 			admin.benutzerEintragen(ben3);
 		} catch (BenutzerExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch(BenutzerInvalidException e) {
+			e.printStackTrace();
 		}
 		System.out.println(admin); 
 		
-		System.out.println("Benutzer löschen:(soll funktionieren) "); 
+		System.out.println("Benutzer Nico löschen: (soll funktionieren) "); 
 		System.out.println("Vorher: " + admin); 
 		try {
 			admin.benutzerLoeschen(ben2);
@@ -134,9 +153,9 @@ public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung {
 		} 
 		System.out.println("Nachher: " + admin); 
 		
-		System.out.println("Nicht existierenden Benutzer löschen: (soll Exception werfen)"); 
+		System.out.println("Nicht existierenden Benutzer Kevin löschen: (soll Exception werfen)"); 
 		try {
-			admin.benutzerLoeschen(ben3);
+			admin.benutzerLoeschen(ben6);
 		} catch (BenutzerNotExistsException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,6 +7,6 @@
  * @version 1.0
  */
 public interface BenutzerVerwaltung {
-	void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException; 
+	void benutzerEintragen(Benutzer benutzer) throws BenutzerExistsException, BenutzerInvalidException; 
 	boolean benutzerOK(Benutzer benutzer); 
 }
