@@ -11,14 +11,14 @@ public class BenutzerTest extends TestCase {
 		Benutzer ben2 = new Benutzer("Nico",p2);
 		Benutzer ben3 = new Benutzer("Nico",p2);
 		Benutzer ben4 = new Benutzer("Georgios",p3); 
-        Benuter ben5 = null; 
+        Benutzer ben5 = null; 
     }
 
     @After
     protected void tearDown() throws Exception {
         super.tearDown(); 
     }
-    
+
     /**
      */
      @Test
