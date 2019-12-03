@@ -4,9 +4,9 @@ import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class BenVerwaltungAdminText {
+public class BenVerwaltungAdminTest {
 
-	public BenVerwaltungAdminText(){
+	public BenVerwaltungAdminTest(){
 		
 	}
 	
@@ -69,7 +69,7 @@ public class BenVerwaltungAdminText {
         } catch(BenutzerInvalidException e) {
         	fail("BenutzerExistsException erwartet");
         }
-        assertEquals(ben1,admin.data.get(0)); 
+        assertFalse(admin.benutzerOK(ben1));  
     }
 
     @Test
@@ -95,7 +95,7 @@ public class BenVerwaltungAdminText {
 		} catch (BenutzerNotExistsException e) {
 			fail("BenutzerNotExistsException erwartet");
 		} 
-        assertTrue(admin.data.isEmpty());
+        assertTrue(admin.benutzerOK(ben1));
         
         try {
         	admin.benutzerLoeschen(ben1);
@@ -104,39 +104,4 @@ public class BenVerwaltungAdminText {
       
         }
     }
-    
-    @Test
-    public void benutzerEintragenNotInitialised() {
-    	try {
-    		admin.benutzerEintragen(ben1);
-    		admin.benutzerEintragen(ben3);
-    		admin.benutzerEintragen(ben4);
-    		admin.benutzerEintragen(ben5);
-    		admin.benutzerEintragen(ben6);
-    	} catch(BenutzerExistsException | BenutzerInvalidException e) {
-    		fail("Keine Exception erwartet"); 
-    	}
-    	
-    	tmp = (BenutzerVerwaltungAdmin) admin.getData();
-    	assertEquals(admin.data,tmp.data); 
-    	
-    	try {
-    		admin.benutzerEintragen(ben1);
-    		fail("BenutzerExistsException erwartet");
-    	} catch(BenutzerExistsException e) {
-    		
-    	} catch(BenutzerInvalidException e) {
-    		fail("BenutzerExistsException erwartet");
-    	}
-    	
-    	try {
-    		admin.benutzerEintragen(ben7);
-    		fail("BenutzerInvalidExceptin erwartet"); 
-    	} catch(BenutzerInvalidException e) {
-    		
-    	} catch(BenutzerExistsException e) {
-    		fail("BenutzerInvalidException erwartet");
-    	}
-    }
-
 }

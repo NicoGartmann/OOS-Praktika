@@ -10,7 +10,7 @@ import java.io.*;
  * @version 2.0
  */
 public class BenutzerVerwaltungAdmin implements BenutzerVerwaltung, Serializable {
-	ArrayList<Benutzer> data = new ArrayList<Benutzer>();
+	private ArrayList<Benutzer> data = new ArrayList<Benutzer>();
 	
 	
 	/**
