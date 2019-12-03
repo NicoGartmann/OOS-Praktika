@@ -1,3 +1,5 @@
+import java.io.*;
+
 /**
  * <p>Überschrift: Struktur von Benutzern</p>
  * <p>Beschreibung: Die Klasse definiert die grundlegende Struktur von 
@@ -9,10 +11,10 @@
  * 					beiden Standardmethoden equals und toString 
  * 					implementiert </p>
  * @author nicog
- * @version 1.0
+ * @version 2.0
  *
  */
-public class Benutzer {
+public class Benutzer implements Serializable {
 
 	String userID; 
 	char[] passWort; 
@@ -48,37 +50,4 @@ public class Benutzer {
 	public String toString() {
 		return (this.userID + "/" + String.copyValueOf(passWort)); 
 	}
-	
-	/**
-	 * <p>Main-Methode Test Benutzer</p>
-	 * @param args 
-	 * @return void
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		char[] p1 = {'q','w','e','r'}; 
-		char[] p2 = {'a','s','d','f'}; 
-		char[] p3 = {'v','x','c','n'}; 
-		
-		Benutzer ben1 = new Benutzer("Georgios",p1); 
-		Benutzer ben2 = new Benutzer("Nico",p2);
-		Benutzer ben3 = new Benutzer("Nico",p2);
-		Benutzer ben4 = new Benutzer("Georgios",p3); 
-		
-		
-		System.out.println("Test toString, alle Benutzer:");
-		System.out.println(ben1); 
-		System.out.println(ben2);  
-		System.out.println(ben3); 
-		System.out.println(ben4); 
-		
-		System.out.print("Test auf Gleichheit  Nico(ben2) & Nico(ben3), erwartet: true, tatsächlich: "); 
-		System.out.println(ben2.equals(ben3)); 
-		
-		System.out.print("Test auf Gleichheit Georgios(ben1) & Georgios(ben4), erwartet: false, tatsächlich: ");
-		System.out.println(ben1.equals(ben4)); 
-		
-	}
-
 }
