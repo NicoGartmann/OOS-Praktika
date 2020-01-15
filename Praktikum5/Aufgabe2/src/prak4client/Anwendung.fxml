@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="166.0" prefWidth="583.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="prak4client.AnwendungsController">
+   <children>
+      <Button id="cancel" fx:id="abbrechen" layoutX="14.0" layoutY="122.0" mnemonicParsing="false" onAction="#handlecancel" prefHeight="30.0" prefWidth="150.0" text="Abbrechen" />
+      <Text layoutX="7.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sie können das System nun verwenden" wrappingWidth="570.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

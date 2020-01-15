@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="244.0" prefWidth="457.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <Text layoutX="14.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Benutzerverwaltung" wrappingWidth="260.26953125">
+         <font>
+            <Font size="27.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="91.0" strokeType="OUTSIDE" strokeWidth="0.0" text="UserID">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="126.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Passwort">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Text layoutX="14.0" layoutY="164.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Neu-Anmeldung">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="machenBtn" layoutX="15.0" layoutY="186.0" mnemonicParsing="false" onAction="#checkAnmeldung" prefHeight="36.0" prefWidth="95.0" text="Ausführen" />
+      <CheckBox fx:id="cb" layoutX="192.0" layoutY="148.0" mnemonicParsing="false" onAction="#setNeuAnmeldung" />
+      <TextField fx:id="benutzername" layoutX="192.0" layoutY="71.0" prefHeight="25.0" prefWidth="241.0" />
+      <PasswordField fx:id="keineahnung" layoutX="192.0" layoutY="105.0" prefHeight="28.0" prefWidth="241.0" />
+   </children>
+</AnchorPane>
